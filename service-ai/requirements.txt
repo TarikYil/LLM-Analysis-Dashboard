@@ -1,0 +1,45 @@
+# Web Framework
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+
+# Database & Vector Support
+psycopg2-binary==2.9.7
+sqlalchemy==2.0.23
+pgvector==0.2.4
+asyncpg>=0.29.0  # Ultra fast async PostgreSQL
+
+# File Processing
+pandas==2.1.3
+openpyxl==3.1.2
+PyPDF2==3.0.1
+python-multipart==0.0.6
+
+# Data Analysis
+numpy==1.25.2
+scipy==1.11.4
+
+# AI & Embeddings (GPU Optimized)
+google-generativeai==0.3.2
+accelerate>=0.27.0
+sentence-transformers==2.7.0         # yeni API uyumlu
+huggingface-hub>=0.21.0              # yeni API uyumlu
+
+# CUDA optimized packages (opsiyonel)
+# cupy-cuda12x>=12.0.0      # CUDA accelerated NumPy (optional) (gerekirse açın)
+
+          # GPU usage monitoring
+nvidia-ml-py3             # NVIDIA GPU monitoring
+python-dotenv==1.0.0
+
+# Utilities
+pydantic==2.5.0
+python-dateutil==2.8.2
+tqdm>=4.65.0  # Progress bars
+psutil>=5.9.0  # System monitoring
+
+# Torch + CUDA 12.1
+torch==2.5.1+cu121
+torchvision==0.20.1+cu121
+torchaudio==2.5.1+cu121
+
+--extra-index-url https://download.pytorch.org/whl/cu121

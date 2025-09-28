@@ -1,0 +1,108 @@
+services:
+  # Frontend Service
+  frontend:
+    build:
+      context: ./service-frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:80"
+    environment:
+      - VITE_API_URL=http://localhost:8000/api
+      - VITE_USE_MOCK_API=false
+    depends_on:
+      - backend
+    networks:
+      - app-network
+
+  # Backend API Gateway Service
+  backend:
+    build:
+      context: ./service-backend
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      - NODE_ENV=production
+      - PORT=8000
+      - AI_SERVICE_URL=http://ai-service:5000
+      - MAX_FILE_SIZE=52428800
+      - UPLOAD_DIR=uploads
+      - ALLOWED_FILE_TYPES=pdf,csv,xlsx,xls
+      - RATE_LIMIT_WINDOW_MS=900000
+      - RATE_LIMIT_MAX_REQUESTS=100
+      - ALLOWED_ORIGINS=http://localhost:3000,http://localhost:5173
+    volumes:
+      - backend-uploads:/app/uploads
+    depends_on:
+      - ai-service
+    networks:
+      - app-network
+    healthcheck:
+      test: ["CMD", "node", "-e", "require('http').get('http://localhost:8000/health', (res) => { process.exit(res.statusCode === 200 ? 0 : 1); }).on('error', () => { process.exit(1); });"]
+      interval: 60s
+      timeout: 30s
+      retries: 5
+      start_period: 60s
+
+  # AI Service - Python FastAPI
+  ai-service:
+    build:
+      context: ./service-ai
+      dockerfile: Dockerfile
+    container_name: service-ai
+    ports:
+      - "5000:5000"
+    environment:
+      - DATABASE_URL=postgresql://service_user:service_pass123@postgres:5432/service_ai
+      - GEMINI_API_KEY=${GEMINI_API_KEY}
+      - CUDA_VISIBLE_DEVICES=0
+    depends_on:
+      postgres:
+        condition: service_healthy
+    restart: unless-stopped
+    networks:
+      - app-network
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    runtime: nvidia
+  # PostgreSQL Database
+  postgres:
+    image: pgvector/pgvector:pg16
+    container_name: service-ai-postgres
+    environment:
+      POSTGRES_DB: service_ai
+      POSTGRES_USER: service_user
+      POSTGRES_PASSWORD: service_pass123
+      POSTGRES_HOST_AUTH_METHOD: trust
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./service-ai/init.sql:/docker-entrypoint-initdb.d/init.sql
+    restart: unless-stopped
+    networks:
+      - app-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U service_user -d service_ai"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  backend-uploads:
+    driver: local
+  ai-uploads:
+    driver: local
+  ai-processed:
+    driver: local
+  postgres_data:
+    driver: local
