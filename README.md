@@ -1,16 +1,17 @@
-# 🤖 AI Reporting Agent Dashboard
+# AI Reporting Agent Dashboard
 
 Modern, AI-powered reporting and analysis platform. A comprehensive solution built with React frontend, Node.js API Gateway, and Python AI service.
 This screen is a dashboard that provides AI-powered summary reports, KPI extraction, trend analysis, and recommended actions based on uploaded CSV data, such as trends over time. It is a control panel that allows you to ask questions by chatting with embeddings over the relevant data set, receive notifications for all actions performed, and view project details and technologies used on the help page.
 <img width="1905" height="910" alt="Ekran görüntüsü 2025-09-28 020724" src="https://github.com/user-attachments/assets/df278990-cff1-4cf3-920e-1a7496838c03" />
 
+## Embedding Structure
 The system uses GPU-accelerated embedding and parallel processing. The all-MiniLM-L6-v2 (384 dimensions) model runs on the GPU with CUDA; it produces ~2000+ texts/second with a batch size of 64. Data is divided into chunks of 5000 and written to PostgreSQL with 8 parallel workers. Cosine similarity searches are performed using pgvector; ivfflat indexes accelerate queries. With async background processing, the user receives an instant response, while the embedding is completed in the background. RAG pipeline: user query → embedding → vector search → context building → Gemini API → response. Total speed is ~1085 records/second; drops to GPU.
 
-## 🎯 Project Overview
+## Project Overview
 
 This project is a dashboard application where users can upload reports (PDF, CSV, Excel) and receive AI-powered analysis. You can chat with your uploaded data using natural language, get automatic summaries, and receive action items.
 
-## 🏗️ System Architecture
+## System Architecture
 
 ```
 ┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
@@ -21,7 +22,7 @@ This project is a dashboard application where users can upload reports (PDF, CSV
 └─────────────────┘    └─────────────────┘    └─────────────────┘    └─────────────────┘
 ```
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 llm-analysis-dashboard/
@@ -86,7 +87,7 @@ llm-analysis-dashboard/
 └── README.md               # This file
 ```
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 - Docker & Docker Compose
@@ -128,7 +129,7 @@ docker-compose up --build
 - **Backend API**: http://localhost:8000
 - **AI Service**: http://localhost:5000
 
-## 🧠 AI Embedding System
+## AI Embedding System
 
 ### RAG (Retrieval-Augmented Generation) Structure
 
@@ -164,9 +165,9 @@ context = build_context(similar_chunks)
 response = gemini.generate_content(context + user_query)
 ```
 
-## 🎨 Platform Features
+## Platform Features
 
-### 📊 **Dashboard Components**
+### **Dashboard Components**
 
 #### **1. File Upload Area**
 - Drag & drop file upload
@@ -214,7 +215,7 @@ response = gemini.generate_content(context + user_query)
 - Component descriptions
 - Troubleshooting guides
 
-### 🤖 **AI-Powered Features**
+### **AI-Powered Features**
 
 #### **1. Smart Chat**
 - **Context-Aware**: Chat based on uploaded data
@@ -240,7 +241,7 @@ response = gemini.generate_content(context + user_query)
 - **Comparison**: Comparative analysis
 - **Visualization**: Chart display
 
-## 🛠️ Technology Stack
+## Technology Stack
 
 ### **Frontend (React)**
 ```json
@@ -296,7 +297,7 @@ response = gemini.generate_content(context + user_query)
 }
 ```
 
-## 🔧 Installation Details
+## Installation Details
 
 ### **1. Environment Variables**
 
@@ -396,7 +397,7 @@ EXPOSE 5000
 CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "5000"]
 ```
 
-## 📚 API Endpoints
+## API Endpoints
 
 ### **File Operations**
 - `POST /api/upload` - File upload
@@ -419,7 +420,7 @@ CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "5000"]
 - `GET /health` - System health status
 - `GET /api/{service}/status` - Service status
 
-## 🔒 Security
+## Security
 
 ### **Frontend Security**
 - **CSP Headers**: Content Security Policy
@@ -440,7 +441,7 @@ CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "5000"]
 - **Error Handling**: Secure error messages
 - **Database Security**: Connection pooling
 
-## 🐳 Docker Deployment
+## Docker Deployment
 
 ### **Production Deployment**
 ```bash
@@ -466,7 +467,7 @@ docker-compose -f docker-compose.yml -f docker-compose.dev.yml up
 docker-compose up -d --build ai-service
 ```
 
-## 📊 Monitoring & Logs
+## Monitoring & Logs
 
 ### **Health Checks**
 ```bash
@@ -495,35 +496,6 @@ docker-compose logs -f ai-service
 docker-compose logs --tail=100 ai-service
 ```
 
-### **Performance Monitoring**
-```bash
-# Container stats
-docker stats
-
-# Resource usage
-docker-compose top
-
-# Disk usage
-docker system df
-```
-
-## 🧪 Testing
-
-### **API Testing**
-```bash
-# Upload test
-curl -X POST http://localhost:8000/api/upload \
-  -F "file=@sample.pdf"
-
-# Chat test
-curl -X POST http://localhost:8000/api/chat \
-  -H "Content-Type: application/json" \
-  -d '{"message": "What are the main findings in this report?", "include_data_context": true}'
-
-# Settings test
-curl -X GET http://localhost:8000/api/settings
-```
-
 ### **Frontend Testing**
 1. Go to http://localhost:3000
 2. Upload a file (PDF, CSV, Excel)
@@ -532,7 +504,7 @@ curl -X GET http://localhost:8000/api/settings
 5. Change settings from the settings menu
 6. Read documentation from the help page
 
-## 🔄 AI Service Integration
+## AI Service Integration
 
 ### **RAG System Flow**
 ```
@@ -555,7 +527,7 @@ curl -X GET http://localhost:8000/api/settings
 - **LLM**: Google Gemini 2.5 Flash
 - **Processing**: GPU-accelerated (CUDA)
 
-## 🛠️ Development
+## Development
 
 ### **Local Development**
 ```bash
@@ -597,7 +569,7 @@ docker-compose logs -f postgres
 docker-compose logs -f frontend
 ```
 
-## 📈 Performance Optimization
+## Performance Optimization
 
 ### **Frontend**
 - **Vite**: Fast build and HMR
@@ -617,7 +589,7 @@ docker-compose logs -f frontend
 - **Vector Indexing**: Fast similarity search
 - **Memory Management**: Efficient data handling
 
-## 🤝 Contributing
+## Contributing
 
 1. Fork the project
 2. Create feature branch (`git checkout -b feature/new-feature`)
@@ -626,13 +598,13 @@ docker-compose logs -f frontend
 5. Open a Pull Request
 
 
-## 📄 License
+## License
 
 This project is licensed under the MIT License.
 
 ---
 
-**🎉 AI-Powered Dashboard Ready!**
+**AI-Powered Dashboard Ready!**
 
 This platform combines modern web technologies with AI power to provide a comprehensive analysis experience. You can chat with your uploaded data using natural language, get automatic summaries, and generate AI-powered action items.
 
