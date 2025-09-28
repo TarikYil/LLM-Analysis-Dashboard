@@ -4,7 +4,7 @@ Modern, AI-powered reporting and analysis platform. A comprehensive solution bui
 This screen is a dashboard that provides AI-powered summary reports, KPI extraction, trend analysis, and recommended actions based on uploaded CSV data, such as trends over time. It is a control panel that allows you to ask questions by chatting with embeddings over the relevant data set, receive notifications for all actions performed, and view project details and technologies used on the help page.
 <img width="1905" height="910" alt="Ekran görüntüsü 2025-09-28 020724" src="https://github.com/user-attachments/assets/df278990-cff1-4cf3-920e-1a7496838c03" />
 
-
+The system uses GPU-accelerated embedding and parallel processing. The all-MiniLM-L6-v2 (384 dimensions) model runs on the GPU with CUDA; it produces ~2000+ texts/second with a batch size of 64. Data is divided into chunks of 5000 and written to PostgreSQL with 8 parallel workers. Cosine similarity searches are performed using pgvector; ivfflat indexes accelerate queries. With async background processing, the user receives an instant response, while the embedding is completed in the background. RAG pipeline: user query → embedding → vector search → context building → Gemini API → response. Total speed is ~1085 records/second; drops to GPU.
 
 ## 🎯 Project Overview
 
