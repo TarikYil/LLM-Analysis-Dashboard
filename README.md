@@ -1,12 +1,12 @@
 # 🤖 AI Reporting Agent Dashboard
 
-Modern, AI destekli raporlama ve analiz platformu. React frontend, Node.js API Gateway ve Python AI servisi ile oluşturulmuş kapsamlı bir çözüm.
+Modern, AI-powered reporting and analysis platform. A comprehensive solution built with React frontend, Node.js API Gateway, and Python AI service.
 
-## 🎯 Proje Özeti
+## 🎯 Project Overview
 
-Bu proje, kullanıcıların raporlarını (PDF, CSV, Excel) yükleyerek AI destekli analizler alabilecekleri bir dashboard uygulamasıdır. Yüklenen veriler üzerinden doğal dil ile chat yapabilir, otomatik özetler ve aksiyon öğeleri alabilirsiniz.
+This project is a dashboard application where users can upload reports (PDF, CSV, Excel) and receive AI-powered analysis. You can chat with your uploaded data using natural language, get automatic summaries, and receive action items.
 
-## 🏗️ Sistem Mimarisi
+## 🏗️ System Architecture
 
 ```
 ┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
@@ -17,22 +17,22 @@ Bu proje, kullanıcıların raporlarını (PDF, CSV, Excel) yükleyerek AI deste
 └─────────────────┘    └─────────────────┘    └─────────────────┘    └─────────────────┘
 ```
 
-## 📁 Proje Yapısı
+## 📁 Project Structure
 
 ```
 llm-analysis-dashboard/
 ├── service-frontend/          # React Frontend
 │   ├── src/
-│   │   ├── components/       # UI Bileşenleri
+│   │   ├── components/       # UI Components
 │   │   │   ├── cards/       # KPI Cards
 │   │   │   ├── charts/      # Trend Charts
 │   │   │   ├── forms/       # Upload Area
 │   │   │   ├── layout/      # Header, Sidebar, Footer
 │   │   │   └── widgets/     # ChatBox, ActionBar, Settings
 │   │   ├── pages/           # Dashboard, Help
-│   │   ├── services/        # API servisleri
+│   │   ├── services/        # API services
 │   │   ├── store/           # Zustand state management
-│   │   └── styles/          # Tema ve stiller
+│   │   └── styles/          # Theme and styles
 │   ├── public/              # Static assets, favicon
 │   ├── package.json
 │   ├── Dockerfile
@@ -40,31 +40,31 @@ llm-analysis-dashboard/
 │
 ├── service-backend/          # Node.js API Gateway
 │   ├── src/
-│   │   ├── routes/          # API endpoint'leri
-│   │   │   ├── upload.js    # Dosya yükleme
+│   │   ├── routes/          # API endpoints
+│   │   │   ├── upload.js    # File upload
 │   │   │   ├── chat.js      # AI Chat
-│   │   │   ├── summary.js   # AI özet servisi
-│   │   │   ├── kpi.js       # KPI analiz servisi
-│   │   │   ├── trend.js     # Trend analiz servisi
+│   │   │   ├── summary.js   # AI summary service
+│   │   │   ├── kpi.js       # KPI analysis service
+│   │   │   ├── trend.js     # Trend analysis service
 │   │   │   ├── actions.js   # Action items
 │   │   │   ├── insights.js  # AI insights
 │   │   │   ├── settings.js  # Settings management
-│   │   │   └── query.js     # Doğal dil sorgu servisi
-│   │   ├── middleware/      # Express middleware'leri
-│   │   ├── services/        # AI servis entegrasyonu
-│   │   ├── app.js           # Express uygulaması
-│   │   └── server.js        # Sunucu başlatma
-│   ├── uploads/             # Yüklenen dosyalar
+│   │   │   └── query.js     # Natural language query service
+│   │   ├── middleware/      # Express middleware
+│   │   ├── services/        # AI service integration
+│   │   ├── app.js           # Express application
+│   │   └── server.js        # Server startup
+│   ├── uploads/             # Uploaded files
 │   ├── package.json
 │   ├── Dockerfile
 │   └── env.example
 │
 ├── service-ai/              # Python AI Service
 │   ├── app/
-│   │   ├── modules/         # AI modülleri
-│   │   │   ├── rag_optimized.py    # RAG sistemi
-│   │   │   ├── rag_ultra_fast.py   # Ultra hızlı RAG
-│   │   │   ├── parser.py           # Dosya parser
+│   │   ├── modules/         # AI modules
+│   │   │   ├── rag_optimized.py    # RAG system
+│   │   │   ├── rag_ultra_fast.py   # Ultra fast RAG
+│   │   │   ├── parser.py           # File parser
 │   │   │   ├── kpi.py              # KPI extraction
 │   │   │   ├── trend.py            # Trend analysis
 │   │   │   ├── insights.py         # AI insights
@@ -79,24 +79,24 @@ llm-analysis-dashboard/
 ├── docker-compose.yml       # Multi-container orchestration
 ├── .env                     # Environment variables
 ├── .gitignore              # Git ignore rules
-└── README.md               # Bu dosya
+└── README.md               # This file
 ```
 
-## 🚀 Hızlı Başlangıç
+## 🚀 Quick Start
 
-### Ön Gereksinimler
+### Prerequisites
 - Docker & Docker Compose
 - Git
 - Google Gemini API Key
 
-### 1. Repository'yi Klonlayın
+### 1. Clone Repository
 ```bash
 git clone <repository-url>
 cd llm-analysis-dashboard
 ```
 
-### 2. Environment Variables Ayarlayın
-`.env` dosyasını oluşturun:
+### 2. Setup Environment Variables
+Create `.env` file:
 ```env
 # AI Service Configuration
 GEMINI_API_KEY=your_gemini_api_key_here
@@ -114,36 +114,36 @@ NODE_ENV=development
 DEBUG=true
 ```
 
-### 3. Docker Compose ile Çalıştırın
+### 3. Run with Docker Compose
 ```bash
 docker-compose up --build
 ```
 
-### 4. Erişim
+### 4. Access
 - **Frontend**: http://localhost:3000
 - **Backend API**: http://localhost:8000
 - **AI Service**: http://localhost:5000
 
-## 🧠 AI Embedding Sistemi
+## 🧠 AI Embedding System
 
-### RAG (Retrieval-Augmented Generation) Yapısı
+### RAG (Retrieval-Augmented Generation) Structure
 
-#### 1. **Veri İşleme Pipeline**
+#### 1. **Data Processing Pipeline**
 ```
-Dosya Yükleme → Parser → Chunking → Embedding → Vector DB → RAG Query
+File Upload → Parser → Chunking → Embedding → Vector DB → RAG Query
 ```
 
-#### 2. **Embedding Modelleri**
+#### 2. **Embedding Models**
 - **Model**: `all-MiniLM-L6-v2` (Sentence Transformers)
-- **Boyut**: 384 dimensions
-- **GPU**: CUDA desteği
+- **Dimensions**: 384 dimensions
+- **GPU**: CUDA support
 - **Batch Size**: 64 (ultra fast mode)
 
 #### 3. **Vector Database**
 - **PostgreSQL + pgvector** extension
-- **Cosine similarity** ile semantic search
-- **Parallel processing** ile hızlı insert
-- **Chunk-based** storage (5000 kayıt/chunk)
+- **Cosine similarity** for semantic search
+- **Parallel processing** for fast insert
+- **Chunk-based** storage (5000 records/chunk)
 
 #### 4. **RAG Query Process**
 ```python
@@ -160,15 +160,15 @@ context = build_context(similar_chunks)
 response = gemini.generate_content(context + user_query)
 ```
 
-## 🎨 Platform Özellikleri
+## 🎨 Platform Features
 
-### 📊 **Dashboard Bileşenleri**
+### 📊 **Dashboard Components**
 
 #### **1. File Upload Area**
-- Drag & drop dosya yükleme
-- PDF, CSV, Excel desteği
+- Drag & drop file upload
+- PDF, CSV, Excel support
 - Real-time upload progress
-- File validation ve error handling
+- File validation and error handling
 
 #### **2. KPI Cards**
 - AI-extracted key metrics
@@ -213,30 +213,30 @@ response = gemini.generate_content(context + user_query)
 ### 🤖 **AI-Powered Features**
 
 #### **1. Smart Chat**
-- **Context-Aware**: Uploaded data üzerinden chat
-- **Natural Language**: Türkçe/İngilizce soru-cevap
-- **Data Insights**: Veriye özel analizler
-- **Real-time**: Anlık yanıtlar
+- **Context-Aware**: Chat based on uploaded data
+- **Natural Language**: English/Turkish Q&A
+- **Data Insights**: Data-specific analysis
+- **Real-time**: Instant responses
 
 #### **2. Automatic Summaries**
-- **Executive Summary**: Yönetici özeti
-- **Detailed Summary**: Detaylı analiz
-- **Key Points**: Ana bulgular
-- **Financial Summary**: Finansal özet
+- **Executive Summary**: Management summary
+- **Detailed Summary**: Detailed analysis
+- **Key Points**: Main findings
+- **Financial Summary**: Financial summary
 
 #### **3. Action Items Generation**
-- **AI Analysis**: Veri analizi sonucu
-- **Priority Ranking**: Öncelik sıralaması
-- **Categorization**: Kategori bazlı gruplama
-- **Implementation**: Uygulanabilir öneriler
+- **AI Analysis**: Based on data analysis
+- **Priority Ranking**: Priority ordering
+- **Categorization**: Category-based grouping
+- **Implementation**: Actionable recommendations
 
 #### **4. KPI Extraction**
-- **Automatic Detection**: Otomatik KPI tespiti
-- **Trend Analysis**: Trend hesaplama
-- **Comparison**: Karşılaştırmalı analiz
-- **Visualization**: Grafik gösterimi
+- **Automatic Detection**: Automatic KPI detection
+- **Trend Analysis**: Trend calculation
+- **Comparison**: Comparative analysis
+- **Visualization**: Chart display
 
-## 🛠️ Teknoloji Stack
+## 🛠️ Technology Stack
 
 ### **Frontend (React)**
 ```json
@@ -292,7 +292,7 @@ response = gemini.generate_content(context + user_query)
 }
 ```
 
-## 🔧 Kurulum Detayları
+## 🔧 Installation Details
 
 ### **1. Environment Variables**
 
@@ -395,40 +395,40 @@ CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "5000"]
 ## 📚 API Endpoints
 
 ### **File Operations**
-- `POST /api/upload` - Dosya yükleme
-- `GET /api/upload/status` - Upload durumu
+- `POST /api/upload` - File upload
+- `GET /api/upload/status` - Upload status
 
 ### **AI Analysis**
 - `POST /api/chat` - AI chat
-- `GET /api/summary/:reportId` - Rapor özeti
-- `GET /api/kpi/:reportId` - KPI analizi
-- `GET /api/trend/:reportId` - Trend analizi
+- `GET /api/summary/:reportId` - Report summary
+- `GET /api/kpi/:reportId` - KPI analysis
+- `GET /api/trend/:reportId` - Trend analysis
 - `GET /api/actions/:reportId` - Action items
 - `GET /api/insights/:reportId` - AI insights
 
 ### **Settings**
-- `GET /api/settings` - Ayarları getir
-- `PUT /api/settings` - Ayarları güncelle
-- `POST /api/settings/reset` - Ayarları sıfırla
+- `GET /api/settings` - Get settings
+- `PUT /api/settings` - Update settings
+- `POST /api/settings/reset` - Reset settings
 
 ### **System**
-- `GET /health` - Sistem sağlık durumu
-- `GET /api/{service}/status` - Servis durumları
+- `GET /health` - System health status
+- `GET /api/{service}/status` - Service status
 
-## 🔒 Güvenlik
+## 🔒 Security
 
 ### **Frontend Security**
 - **CSP Headers**: Content Security Policy
-- **XSS Protection**: Cross-site scripting koruması
+- **XSS Protection**: Cross-site scripting protection
 - **HTTPS**: SSL/TLS encryption
 - **Input Validation**: Client-side validation
 
 ### **Backend Security**
-- **Rate Limiting**: IP başına istek sınırlaması
-- **CORS**: Cross-origin request koruması
+- **Rate Limiting**: Request limits per IP
+- **CORS**: Cross-origin request protection
 - **Helmet**: HTTP security headers
-- **File Validation**: Dosya türü ve boyut kontrolü
-- **Input Sanitization**: Giriş verisi doğrulama
+- **File Validation**: File type and size control
+- **Input Sanitization**: Input data validation
 
 ### **AI Service Security**
 - **API Key Management**: Environment variables
@@ -514,19 +514,19 @@ curl -X POST http://localhost:8000/api/upload \
 # Chat test
 curl -X POST http://localhost:8000/api/chat \
   -H "Content-Type: application/json" \
-  -d '{"message": "Bu rapordaki ana bulgular neler?", "include_data_context": true}'
+  -d '{"message": "What are the main findings in this report?", "include_data_context": true}'
 
 # Settings test
 curl -X GET http://localhost:8000/api/settings
 ```
 
 ### **Frontend Testing**
-1. http://localhost:3000 adresine gidin
-2. Bir dosya yükleyin (PDF, CSV, Excel)
-3. Chat kutusunda sorular sorun
-4. KPI kartlarını ve grafikleri inceleyin
-5. Settings menüsünden ayarları değiştirin
-6. Help sayfasından dokümantasyonu okuyun
+1. Go to http://localhost:3000
+2. Upload a file (PDF, CSV, Excel)
+3. Ask questions in the chat box
+4. Review KPI cards and charts
+5. Change settings from the settings menu
+6. Read documentation from the help page
 
 ## 🔄 AI Service Integration
 
@@ -572,11 +572,11 @@ uvicorn app.main:app --reload
 ```
 
 ### **Adding New Features**
-1. **Backend**: Yeni route oluşturun
-2. **Frontend**: API service'i güncelleyin
-3. **AI Service**: Yeni modül ekleyin
-4. **UI**: Bileşenleri güncelleyin
-5. **State**: Zustand store'u güncelleyin
+1. **Backend**: Create new route
+2. **Frontend**: Update API service
+3. **AI Service**: Add new module
+4. **UI**: Update components
+5. **State**: Update Zustand store
 
 ### **Debugging**
 ```bash
@@ -621,39 +621,18 @@ docker-compose logs -f frontend
 4. Push to branch (`git push origin feature/new-feature`)
 5. Open a Pull Request
 
-## 📝 TODO
-
-- [ ] Unit testler ekle
-- [ ] E2E testler (Cypress)
-- [ ] Redis cache entegrasyonu
-- [ ] JWT authentication
-- [ ] WebSocket real-time updates
-- [ ] Multi-language support
-- [ ] Advanced analytics
-- [ ] Export functionality
-- [ ] User management
-- [ ] API versioning
 
 ## 📄 License
 
-Bu proje MIT lisansı altında lisanslanmıştır.
-
-## 🆘 Support
-
-Sorunlar için:
-1. GitHub Issues kullanın
-2. Logları kontrol edin (`docker-compose logs`)
-3. Health check endpoint'lerini test edin
-4. API dokümantasyonunu inceleyin
-5. Help sayfasından troubleshooting rehberini okuyun
+This project is licensed under the MIT License.
 
 ---
 
 **🎉 AI-Powered Dashboard Ready!**
 
-Bu platform, modern web teknolojileri ve AI gücünü birleştirerek kapsamlı bir analiz deneyimi sunar. Yüklediğiniz veriler üzerinden doğal dil ile chat yapabilir, otomatik özetler alabilir ve AI destekli aksiyon öğeleri oluşturabilirsiniz.
+This platform combines modern web technologies with AI power to provide a comprehensive analysis experience. You can chat with your uploaded data using natural language, get automatic summaries, and generate AI-powered action items.
 
-**Kurulum için:**
-1. `.env` dosyasında Gemini API key'inizi ayarlayın
-2. `docker-compose up --build` ile tüm servisleri başlatın
-3. http://localhost:3000 adresinden platforma erişin
+**Installation:**
+1. Set your Gemini API key in `.env` file
+2. Start all services with `docker-compose up --build`
+3. Access the platform at http://localhost:3000
