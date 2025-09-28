@@ -1,7 +1,7 @@
 # 🤖 AI Reporting Agent Dashboard
 
 Modern, AI-powered reporting and analysis platform. A comprehensive solution built with React frontend, Node.js API Gateway, and Python AI service.
-This screen is a dashboard that provides AI-powered summary reports, KPI extraction, trend analysis, and recommended actions based on uploaded CSV data, such as trends over time.
+This screen is a dashboard that provides AI-powered summary reports, KPI extraction, trend analysis, and recommended actions based on uploaded CSV data, such as trends over time. It is a control panel that allows you to ask questions by chatting with embeddings over the relevant data set, receive notifications for all actions performed, and view project details and technologies used on the help page.
 <img width="1905" height="910" alt="Ekran görüntüsü 2025-09-28 020724" src="https://github.com/user-attachments/assets/df278990-cff1-4cf3-920e-1a7496838c03" />
 
 
