@@ -192,14 +192,16 @@ response = gemini.generate_content(context + user_query)
 - Context-aware responses
 - Data-specific insights
 - Conversation history
+<img width="482" height="468" alt="Ekran görüntüsü 2025-09-28 164738" src="https://github.com/user-attachments/assets/14109b2d-5732-4965-bd22-892461b6593a" />
 
 #### **5. Action Items**
 - AI-generated action recommendations
 - Priority-based categorization
 - Expandable details
 - Status tracking
+<img width="1895" height="888" alt="Ekran görüntüsü 2025-09-28 020738" src="https://github.com/user-attachments/assets/6d82f079-df9f-42da-aac3-c6ada7c66609" />
 
-### ⚙️ **Settings & Configuration**
+### **Settings & Configuration**
 
 #### **Settings Modal**
 - **General**: Theme, language, notifications
@@ -458,44 +460,6 @@ docker-compose logs -f
 docker-compose down
 ```
 
-### **Development Mode**
-```bash
-# Start with hot reload
-docker-compose -f docker-compose.yml -f docker-compose.dev.yml up
-
-# Rebuild specific service
-docker-compose up -d --build ai-service
-```
-
-## Monitoring & Logs
-
-### **Health Checks**
-```bash
-# Frontend
-curl http://localhost:3000
-
-# Backend
-curl http://localhost:8000/health
-
-# AI Service
-curl http://localhost:5000/
-
-# Database
-docker-compose exec postgres pg_isready
-```
-
-### **Log Monitoring**
-```bash
-# All services
-docker-compose logs -f
-
-# Specific service
-docker-compose logs -f ai-service
-
-# Last 100 lines
-docker-compose logs --tail=100 ai-service
-```
-
 ### **Frontend Testing**
 1. Go to http://localhost:3000
 2. Upload a file (PDF, CSV, Excel)
@@ -554,20 +518,6 @@ uvicorn app.main:app --reload
 4. **UI**: Update components
 5. **State**: Update Zustand store
 
-### **Debugging**
-```bash
-# Backend logs
-docker-compose logs -f backend
-
-# AI service logs
-docker-compose logs -f ai-service
-
-# Database logs
-docker-compose logs -f postgres
-
-# Frontend logs
-docker-compose logs -f frontend
-```
 
 ## Performance Optimization
 
@@ -588,14 +538,6 @@ docker-compose logs -f frontend
 - **Batch Processing**: Parallel processing
 - **Vector Indexing**: Fast similarity search
 - **Memory Management**: Efficient data handling
-
-## Contributing
-
-1. Fork the project
-2. Create feature branch (`git checkout -b feature/new-feature`)
-3. Commit changes (`git commit -m 'Add new feature'`)
-4. Push to branch (`git push origin feature/new-feature`)
-5. Open a Pull Request
 
 
 ## License
